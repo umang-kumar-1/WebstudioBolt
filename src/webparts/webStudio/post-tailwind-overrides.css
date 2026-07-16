@@ -1,0 +1,37 @@
+/* Loaded after tailwind.css — overrides Tailwind preflight for b/strong */
+b,
+strong {
+  font-weight: bold;
+}
+
+/* Theme button padding/sizing — Tailwind preflight sets button { padding: 0 } */
+button.btn-primary,
+a.btn-primary,
+.btn-primary,
+button.btn-secondary,
+a.btn-secondary,
+.btn-secondary {
+  padding: var(--btn-padding-y, 0.5rem) var(--btn-padding-x, 1.25rem) !important;
+  font-size: var(--btn-font-size, 0.875rem) !important;
+  border-radius: var(--border-radius-md, 0.25rem) !important;
+  line-height: 1.25 !important;
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+button.btn-primary,
+a.btn-primary,
+.btn-primary {
+  background-color: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-text) !important;
+}
+
+button.btn-secondary,
+a.btn-secondary,
+.btn-secondary {
+  background-color: var(--btn-secondary-bg) !important;
+  color: var(--btn-secondary-text) !important;
+  border: 1px solid var(--border-color) !important;
+}

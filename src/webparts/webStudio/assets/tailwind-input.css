@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/********* SPFX OVERRIDE CSS   *********/
+
+.CanvasComponent.LCS .grid {
+  padding: 0 !important;
+}
+
+.CanvasComponent.LCS .grid:after,
+.CanvasComponent.LCS .grid:before {
+  content: none !important;
+}
+
+div#SuiteNavPlaceholder {
+  display: none;
+}
+
+.CanvasComponent.LCS,
+.CanvasComponent.LCS .CanvasZone,
+.CanvasComponent.LCS .CanvasZone--alignment,
+.CanvasComponent.LCS .Canvas,
+.CanvasComponent.LCS .ControlZone,
+.CanvasComponent.LCS .CanvasSection,
+.CanvasComponent.LCS .CanvasLayout {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+/* --- Remove the SharePoint inner padding that keeps content boxed --- */
+
+div[data-automation-id="CanvasZone"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+/* --- Center your web part content --- */
+
+#workbenchPageContent,
+.CanvasZone,
+.ControlZone {
+  justify-content: center !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* --- Fix top offset issue in Workbench --- */
+
+#workbenchPageContent {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  position: relative;
+  top: 0 !important;
+}
+
+/* --- Optional: remove extra canvas chrome for full width view --- */
+
+.CanvasZone--alignment,
+.CanvasZone--section,
+.CanvasSection {
+  max-width: 100% !important;
+}
+
+/* --- Hide SharePoint chrome (optional for full app look) --- */
+
+#spSiteHeader,
+#spCommandBar,
+.CanvasZone--header,
+#sp-appBar,
+.sp-appBar,
+div#spTopPlaceholder {
+  display: none !important;
+}
+
+/* Reclaim horizontal space when the app bar is hidden on modern pages */
+#spPageCanvasContent,
+[data-automation-id="contentScrollRegion"],
+.sp-pageLayout,
+.sp-pageLayout__main {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+html,
+body {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: clip;
+}
+
+.CanvasZoneSectionContainer[data-automation-id='CanvasZone-SectionContainer'] {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+.CanvasSection[data-automation-id="CanvasSection"] {
+  padding: 0;
+}
+
+#preview-main-scroll .w-screen,
+#workbenchPageContent .w-screen,
+.w-screen {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* --- Global Typography --- */
+
+:root {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+}
+
+h1,
+.h1 {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-h1) !important;
+  color: var(--heading-h1-color);
+  font-weight: var(--font-weight-bold);
+}
+
+h2,
+.h2 {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-h2) !important;
+  color: var(--heading-h2-color);
+  font-weight: var(--font-weight-bold);
+}
+
+h3,
+.h3 {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-h3) !important;
+  color: var(--heading-h3-color);
+  font-weight: var(--font-weight-bold);
+}
+
+h4,
+.h4 {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-h4) !important;
+  color: var(--heading-h4-color);
+  font-weight: var(--font-weight-bold);
+}
+
+h5,
+.h5 {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-h5) !important;
+  color: var(--heading-h5-color);
+  font-weight: var(--font-weight-bold);
+}
+
+h6,
+.h6 {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-h6) !important;
+  color: var(--heading-h6-color);
+  font-weight: var(--font-weight-bold);
+}
+
+p {
+  font-size: var(--font-size-p) !important;
+}
+
+p,
+span,
+div {
+  font-family: var(--font-family-base);
+}
+
+/* Tailwind preflight uses font-weight: bolder; prefer fixed bold (700) */
+b,
+strong {
+  font-weight: bold;
+}
+

@@ -1,0 +1,1199 @@
+/**
+ * WebStudio responsive breakpoints (Tailwind md/lg utilities are not in the SPFx bundle).
+ * Mobile:  0 – 767px
+ * Tablet:  768px – 1023px
+ * Desktop: 1024px+
+ */
+
+:root {
+  --ws-bp-tablet: 768px;
+  --ws-bp-desktop: 1024px;
+  /* Bootstrap-style container max-width steps (used when --page-max-width is unset) */
+  --ws-container-max: 100%;
+}
+
+@media (min-width: 576px) {
+  :root {
+    --ws-container-max: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --ws-container-max: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  :root {
+    --ws-container-max: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --ws-container-max: 1140px;
+  }
+}
+
+@media (min-width: 1400px) {
+  :root {
+    --ws-container-max: 1320px;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --ws-container-max: 1400px;
+  }
+}
+
+/* --- Site container horizontal padding --- */
+.ws-site-container,
+.ws-page-width {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.ws-slider-content {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .ws-slider-content {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ws-slider-content {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* --- Header inner row --- */
+.ws-header-inner {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* Prevent horizontal page scroll */
+#preview-main-scroll,
+.ws-site-preview-root {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* Public site shell — bounded viewport height so header sticky works on scroll */
+.ws-site-public-shell {
+  height: 100%;
+  max-height: 100dvh;
+  min-height: 0;
+}
+
+.ws-site-public-shell #preview-main-scroll > header.ws-site-sticky-header,
+.ws-site-public-shell #preview-main-scroll > header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+#preview-main-scroll img,
+#preview-main-scroll video,
+#preview-main-scroll iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/*
+ * Top navigation
+ * Mobile (<768px): hamburger slide-in drawer
+ * Tablet (768–1023px): horizontal nav when items fit; else hamburger (see .ws-header-nav-overflow)
+ * Desktop (1024px+): full horizontal nav when items fit; else hamburger
+ */
+
+/* Off-screen ruler for natural single-line nav width */
+.ws-top-nav-measure-slot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.ws-top-nav-measure-slot .ws-top-nav-bar {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  width: max-content;
+  white-space: nowrap;
+}
+
+.ws-top-nav-measure-slot .ws-top-nav-item {
+  flex-shrink: 0;
+}
+.ws-top-nav-scroll-host,
+.ws-top-nav-desktop-wrap,
+.ws-top-nav-bar,
+.ws-top-nav-lang-desktop,
+.ws-top-nav-lang-tablet,
+.ws-top-nav-below-logo-row {
+  display: none !important;
+}
+
+.ws-top-nav-mobile-toggle {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.ws-top-nav-mobile-backdrop {
+  display: none;
+}
+
+#ws-mobile-nav-panel {
+  display: block;
+  pointer-events: none;
+}
+
+#ws-mobile-nav-panel.ws-mobile-nav-open {
+  pointer-events: auto;
+}
+
+.ws-mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(320px, 88vw);
+  z-index: 60;
+  background: #fff;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.25s ease-out;
+  overflow: hidden;
+}
+
+#ws-mobile-nav-panel.ws-mobile-nav-open .ws-mobile-nav-drawer {
+  transform: translateX(0);
+}
+
+#ws-mobile-nav-panel.ws-mobile-nav-open .ws-top-nav-mobile-backdrop {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  background: rgba(0, 0, 0, 0.45);
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.ws-mobile-nav-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.ws-mobile-nav-drawer-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+}
+
+.ws-mobile-nav-drawer-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.ws-mobile-nav-drawer-lang {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Language switcher only in drawer header on mobile / hamburger nav — never header or footer */
+@media (max-width: 767px) {
+  .ws-lang-selector--header,
+  .ws-header-lang-slot {
+    display: none !important;
+  }
+}
+
+header.ws-header-nav-overflow .ws-lang-selector--header,
+header.ws-header-nav-overflow .ws-header-lang-slot {
+  display: none !important;
+}
+
+.ws-mobile-nav-drawer-footer {
+  display: none !important;
+}
+
+.ws-mobile-nav-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ws-header-top-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 56px;
+  gap: 0.75rem;
+}
+
+.ws-header-logo-wrap {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: calc(100% - 3rem);
+}
+
+.ws-header-logo-wrap img {
+  max-width: 100%;
+  height: auto;
+}
+
+.ws-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.ws-site-sticky-header .ws-header-inner,
+header .ws-header-inner {
+  max-width: var(--nav-max-width, var(--page-max-width, var(--ws-container-max, 100%)));
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .ws-top-nav-mobile-toggle {
+    display: none !important;
+  }
+
+  #ws-mobile-nav-panel,
+  #ws-mobile-nav-panel.ws-mobile-nav-open {
+    display: none !important;
+    pointer-events: none !important;
+  }
+
+  .ws-top-nav-scroll-host {
+    display: block !important;
+    overflow: visible !important;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .ws-top-nav-desktop-wrap {
+    display: flex !important;
+    align-items: center;
+    min-width: 0;
+    height: 100%;
+  }
+
+  .ws-top-nav-desktop-wrap.ws-near-logo {
+    margin-left: 1.5rem;
+  }
+
+  .ws-top-nav-bar {
+    display: flex !important;
+    align-items: center;
+    min-width: 0;
+    max-width: 100%;
+    overflow: visible !important;
+    flex-wrap: nowrap;
+  }
+
+  .ws-top-nav-bar a.top-nav-link {
+    white-space: nowrap;
+  }
+
+  .ws-top-nav-below-logo-row {
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  .ws-top-nav-below-logo-row .ws-header-inner {
+    overflow: visible !important;
+  }
+
+  .ws-top-nav-lang-tablet {
+    display: block !important;
+  }
+
+  /* Many nav items: use hamburger on tablet/desktop instead of cramped/wrapped bar */
+  header.ws-header-nav-overflow .ws-top-nav-mobile-toggle {
+    display: inline-flex !important;
+  }
+
+  header.ws-header-nav-overflow #ws-mobile-nav-panel {
+    display: block !important;
+    pointer-events: none;
+  }
+
+  header.ws-header-nav-overflow #ws-mobile-nav-panel.ws-mobile-nav-open {
+    pointer-events: auto;
+  }
+
+  header.ws-header-nav-overflow .ws-top-nav-scroll-host,
+  header.ws-header-nav-overflow .ws-top-nav-desktop-wrap,
+  header.ws-header-nav-overflow .ws-top-nav-below-logo-row {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ws-top-nav-bar {
+    flex-wrap: nowrap;
+  }
+
+  .ws-top-nav-lang-desktop {
+    display: block !important;
+  }
+
+  .ws-top-nav-lang-tablet {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Hero / header section — cap oversized theme & custom heading sizes on phones */
+  #preview-main-scroll h1.ws-hero-heading,
+  #preview-main-scroll .ws-hero-heading {
+    font-size: 2rem !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.02em;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+  }
+
+  /* Container section banner (e.g. job detail title on site-color bar) */
+  #preview-main-scroll h1.ws-container-section-heading {
+    font-size: 1.5rem !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0.02em;
+  }
+
+  #preview-main-scroll p.ws-hero-subheading {
+    font-size: 1.5rem !important;
+    line-height: 1.35 !important;
+    max-width: 100%;
+  }
+
+  #preview-main-scroll .ws-hero-description,
+  #preview-main-scroll .ws-hero-description p {
+    font-size: 0.9375rem !important;
+    line-height: 1.5 !important;
+  }
+
+  #preview-main-scroll .slider-container-title {
+    font-size: 1.5rem !important;
+    line-height: 1.2 !important;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /*
+   * Page body: no forced full-viewport min-height on mobile.
+   * Main (first) hero: 50% viewport; other heroes: content height.
+   */
+  #preview-main-scroll > .ws-page-body {
+    min-height: auto !important;
+  }
+
+  #preview-main-scroll .ws-hero-main:not(.ws-layout-split) {
+    min-height: 50vh !important;
+    min-height: 50dvh !important;
+    height: auto !important;
+  }
+
+  #preview-main-scroll .ws-hero-main.ws-layout-split:not(.ws-layout-split-height-configured) {
+    min-height: 50vh !important;
+    min-height: 50dvh !important;
+    height: auto !important;
+  }
+
+  /* #preview-main-scroll .ws-hero-main .ws-layout-split-half {
+    min-height: auto !important;
+    height: auto !important;
+  } */
+
+  #preview-main-scroll .ws-hero-section:not(.ws-hero-main):not(.ws-layout-split) {
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  #preview-main-scroll .ws-hero-section:not(.ws-hero-main).ws-layout-split:not(.ws-layout-split-height-configured){
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  #preview-main-scroll .ws-slider-viewport {
+    height: auto !important;
+    min-height: 12rem !important;
+  }
+
+  /* #preview-main-scroll .ws-layout-split-half {
+    min-height: auto !important;
+  } */
+
+  /* Card grid: 3rem gap between items; title min-height from content only */
+  #preview-main-scroll .ws-card-grid,
+  #preview-main-scroll .ws-card-grid-flat {
+    gap: 3rem !important;
+    --ws-grid-gap: 3rem;
+  }
+
+  #preview-main-scroll .ws-card-grid-item-title {
+    min-height: auto !important;
+  }
+
+  .ws-header-logo-wrap .header-logo-text {
+    font-size: 1rem !important;
+    white-space: normal;
+    line-height: 1.2;
+  }
+
+  #ws-mobile-nav-panel .top-nav-link {
+    white-space: normal;
+    line-height: 1.35;
+    height: auto;
+    display: flex !important;
+  }
+
+  #ws-mobile-nav-panel .top-nav-link.active {
+    color: var(--primary-color) !important;
+    font-weight: 700;
+  }
+
+  body.ws-mobile-nav-body-lock {
+    overflow: hidden !important;
+  }
+}
+
+/* Small phones — hero/banner content needs vertical breathing room (e.g. careers page) */
+@media (max-width: 479px) {
+  #preview-main-scroll .ws-hero-section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+    box-sizing: border-box !important;
+    justify-content: center !important;
+  }
+
+  #preview-main-scroll .ws-hero-section.ws-hero-main:not(.ws-layout-split),
+  #preview-main-scroll .ws-hero-section.ws-hero-main.ws-layout-split:not(.ws-layout-split-height-configured) {
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  #preview-main-scroll .ws-hero-section .ws-page-width {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #preview-main-scroll h1.ws-hero-heading,
+  #preview-main-scroll .ws-hero-heading {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+
+  #preview-main-scroll p.ws-hero-subheading {
+    font-size: 1.125rem !important;
+    line-height: 1.35 !important;
+  }
+
+  #preview-main-scroll .ws-hero-section .ws-hero-description,
+  #preview-main-scroll .ws-hero-section .ws-hero-description p {
+    font-size: 0.875rem !important;
+    line-height: 1.55 !important;
+  }
+}
+
+/* Hero / header split layout (image + text) */
+.ws-layout-split {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#preview-main-scroll .ws-hero-section.ws-layout-split:not(.ws-layout-split-height-configured) {
+  height: auto !important;
+  min-height: auto !important;
+}
+
+.ws-layout-split-half {
+  width: 100%;
+  min-height: 16rem;
+}
+
+@media (max-width: 767px) {
+  .ws-layout-split-half {
+    min-height: auto;
+  }
+
+  .ws-layout-split-media {
+    min-height: 16rem;
+  }
+}
+
+.ws-layout-split-text {
+  padding: 2rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .ws-layout-split-half {
+    width: 50%;
+    min-height: 0;
+  }
+
+  .ws-layout-split-media {
+    min-height: 16rem;
+    align-self: stretch;
+  }
+
+  .ws-layout-split-text {
+    align-self: stretch;
+    height: auto;
+  }
+
+  .ws-layout-split.ws-layout-split-img-left {
+    flex-direction: row;
+  }
+
+  .ws-layout-split.ws-layout-split-img-right {
+    flex-direction: row-reverse;
+  }
+
+  .ws-layout-split-text {
+    padding: 3rem 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ws-layout-split-text {
+    padding: 4rem 3.5rem;
+  }
+}
+
+/* Slider carousel split layout: 60% text content, 40% image frame */
+.ws-slider-split-media {
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  width: 40% !important;
+  max-width: 40% !important;
+  height: 100% !important;
+}
+
+.ws-slider-split-media--img-right {
+  left: 60% !important;
+  right: auto !important;
+}
+
+.ws-slider-split-text-panel {
+  width: 60% !important;
+  max-width: 60% !important;
+}
+
+/* Slider card row: gap + clip so only N columns show at once */
+.ws-card-grid-slider {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Card grid: 1 col mobile, 2 tablet, N desktop (set --ws-grid-cols on element) */
+.ws-card-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ws-grid-gap, 1rem);
+}
+
+@media (min-width: 768px) {
+  .ws-card-grid:not(.ws-card-grid-flat):not(.ws-card-grid-slider) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .ws-card-grid:not(.ws-card-grid-flat):not(.ws-card-grid-slider) {
+    grid-template-columns: repeat(var(--ws-grid-cols, 3), minmax(0, 1fr));
+  }
+}
+
+/* Footer table template */
+.ws-footer-columns {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2rem;
+  width: 100%;
+}
+
+.ws-footer-column {
+  flex: 1 1 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.ws-footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.ws-footer-logo {
+  max-width: min(360px, 100%);
+  max-height: 6rem;
+  width: auto;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .ws-footer-columns {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  .ws-footer-column {
+    flex: 1 1 0px;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .ws-footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .ws-footer-logo {
+    max-height: 7rem;
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ws-footer-columns {
+    gap: 4rem;
+  }
+
+  .ws-footer-logo {
+    max-height: 8rem;
+  }
+}
+
+/* Contact form — hero band + overlapping form card */
+.ws-contact-form-section {
+  --ws-contact-overlap: 9rem;
+}
+
+.ws-contact-hero {
+  padding-top: 2rem;
+  padding-bottom: var(--ws-contact-overlap);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.ws-contact-form-overlap {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: calc(-1 * var(--ws-contact-overlap));
+  padding-bottom: 2rem;
+}
+
+.ws-contact-form-width {
+  width: 100%;
+  max-width: 100%;
+}
+
+.ws-contact-form-card {
+  padding: 32px;
+  border-radius: var(--ws-contact-card-radius, var(--border-radius-lg, var(--border-radius-md))) !important;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .ws-contact-form-width {
+    width: 640px;
+  }
+
+  .ws-contact-hero {
+    padding-top: 3rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .ws-contact-form-overlap {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-bottom: 3rem;
+  }
+
+  .ws-contact-form-card {
+    padding: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ws-contact-hero {
+    padding-top: 4rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .ws-contact-form-overlap {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 4rem;
+  }
+
+  .ws-contact-form-card {
+    padding: 32px;
+  }
+}
+
+/* Data table title bar */
+.ws-table-title-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.ws-table-title-side {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .ws-table-title-row {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .ws-table-title-side.ws-table-title-side-narrow {
+    width: 33.333333%;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Slider hero content row */
+.ws-slider-content-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .ws-slider-content-row {
+    flex-direction: row;
+    gap: 3rem;
+  }
+}
+
+/* Breadcrumb: allow horizontal scroll on small screens */
+@media (max-width: 1023px) {
+  .ws-breadcrumb-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Site footer shell padding */
+.ws-footer-shell {
+  padding: 2.5rem 0;
+}
+
+/* Footer inner content matches page container width (not navigation/header width) */
+.ws-footer-shell .ws-page-width,
+.ws-footer-shell .ws-footer-inner {
+  width: 100%;
+  max-width: var(--page-max-width, var(--ws-container-max, 100%)) !important;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+@media (min-width: 768px) {
+  .ws-footer-shell {
+    padding: 3rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ws-footer-shell {
+    padding: 4rem 0;
+  }
+}
+
+@media (min-width: 1440px) {
+  .ws-footer-shell .ws-page-width,
+  .ws-footer-shell .ws-footer-inner {
+    max-width: var(--page-max-width-lg, var(--page-max-width, var(--ws-container-max, 100%))) !important;
+  }
+}
+
+/* Corporate footer — 3-column layout */
+.ws-footer-corporate-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .ws-footer-corporate-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ws-footer-corporate-copy {
+    align-items: flex-end;
+  }
+}
+
+/* --- SPFx editor shell (sidebar + preview) --- */
+.ws-editor-shell {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.ws-editor-preview {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.ws-editor-mobile-bar {
+  z-index: 25;
+}
+
+/* Mobile: editor sidebar slides in as overlay — preview uses full width */
+.ws-editor-sidebar-mobile {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: min(288px, 88vw) !important;
+  z-index: 1200 !important;
+  transform: translateX(-100%);
+  transition: transform 0.25s ease-out;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
+}
+
+.ws-editor-sidebar-mobile.ws-editor-sidebar-open {
+  transform: translateX(0);
+}
+
+.ws-editor-sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1190 !important;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+
+/* Editor sidebar — stay below modal overlays (ModalManager uses z-index 1300+) */
+.ws-editor-sidebar:not(.ws-editor-sidebar-mobile) {
+  position: relative;
+  z-index: 10;
+}
+
+/* Collapsed editor sidebar — icon rail with hover tooltips */
+.ws-editor-sidebar.ws-editor-sidebar--collapsed {
+  width: 4rem !important;
+  min-width: 4rem;
+  max-width: 4rem;
+}
+
+.ws-sidebar-rail-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: var(--sidebar-button-color);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.ws-sidebar-rail-brand:hover {
+  opacity: 0.92;
+  transform: scale(1.04);
+}
+
+.ws-editor-sidebar-rail {
+  min-height: 0;
+}
+
+.ws-editor-sidebar-rail-scroll {
+  overflow-x: clip;
+}
+
+.ws-editor-sidebar-rail-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+  padding: 0 0.375rem;
+}
+
+.ws-editor-sidebar-rail-divider {
+  height: 1px;
+  margin: 0.5rem 0.625rem;
+  background: var(--sidebar-border-color);
+}
+
+.ws-sidebar-rail-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+  border-radius: 0.375rem;
+  background: transparent;
+  color: var(--sidebar-icon-color);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.12s ease;
+}
+
+.ws-sidebar-rail-btn__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  opacity: 0.85;
+  transition: opacity 0.15s ease;
+}
+
+.ws-sidebar-rail-btn:hover,
+.ws-sidebar-rail-btn:focus-visible {
+  background: var(--sidebar-hover-bg);
+  outline: none;
+}
+
+.ws-sidebar-rail-btn:hover .ws-sidebar-rail-btn__icon,
+.ws-sidebar-rail-btn:focus-visible .ws-sidebar-rail-btn__icon {
+  opacity: 1;
+}
+
+.ws-sidebar-rail-btn--active {
+  background: var(--sidebar-active-bg);
+  color: var(--sidebar-active-text-color);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--sidebar-active-indicator-color) 35%, transparent);
+}
+
+.ws-sidebar-rail-btn--active .ws-sidebar-rail-btn__icon {
+  opacity: 1;
+}
+
+.ws-sidebar-rail-tooltip-fixed {
+  position: fixed;
+  transform: translateY(-50%);
+  padding: 0.4rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+  color: #fff;
+  background: #1f2937;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  pointer-events: none;
+  z-index: 10100;
+}
+
+.ws-sidebar-rail-tooltip-fixed::before {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-right-color: #1f2937;
+}
+
+@media (max-width: 767px) {
+  .ws-editor-sidebar--collapsed {
+    width: min(288px, 88vw) !important;
+    min-width: 0;
+    max-width: none;
+  }
+}
+
+/*
+ * Narrow preview pane (mobile phone OR editor preview squeezed by sidebar).
+ * Overrides tablet/desktop nav rules — always use site hamburger menu.
+ */
+#preview-main-scroll.ws-preview-narrow .ws-top-nav-mobile-toggle {
+  display: inline-flex !important;
+}
+
+#preview-main-scroll.ws-preview-narrow #ws-mobile-nav-panel {
+  display: block !important;
+  pointer-events: none;
+}
+
+#preview-main-scroll.ws-preview-narrow #ws-mobile-nav-panel.ws-mobile-nav-open {
+  pointer-events: auto;
+}
+
+#preview-main-scroll.ws-preview-narrow .ws-top-nav-scroll-host,
+#preview-main-scroll.ws-preview-narrow .ws-top-nav-desktop-wrap,
+#preview-main-scroll.ws-preview-narrow .ws-top-nav-bar,
+#preview-main-scroll.ws-preview-narrow .ws-top-nav-below-logo-row,
+#preview-main-scroll.ws-preview-narrow .ws-top-nav-lang-desktop,
+#preview-main-scroll.ws-preview-narrow .ws-top-nav-lang-tablet {
+  display: none !important;
+}
+
+#preview-main-scroll.ws-preview-narrow .ws-header-inner {
+  max-width: 100% !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+#preview-main-scroll.ws-preview-narrow .ws-header-logo-wrap {
+  max-width: calc(100% - 3rem);
+}
+
+/* Centered logo must not cover the hamburger on narrow panes */
+#preview-main-scroll.ws-preview-narrow .ws-header-logo-wrap.absolute {
+  position: relative !important;
+  left: auto !important;
+  transform: none !important;
+  flex: 1 1 auto;
+}
+
+#preview-main-scroll.ws-preview-narrow .ws-header-actions {
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+/* Prevent horizontal content bleed inside preview */
+#preview-main-scroll.ws-preview-narrow .ws-site-preview-root,
+#preview-main-scroll.ws-preview-narrow .ws-page-body,
+#preview-main-scroll.ws-preview-narrow .ws-hero-section,
+#preview-main-scroll.ws-preview-narrow .ws-page-width,
+#preview-main-scroll.ws-preview-narrow .ws-slider-content,
+#preview-main-scroll.ws-preview-narrow [data-container-id] {
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+#preview-main-scroll.ws-preview-narrow .ws-hero-heading,
+#preview-main-scroll.ws-preview-narrow .ws-hero-subheading,
+#preview-main-scroll.ws-preview-narrow .ws-hero-description,
+#preview-main-scroll.ws-preview-narrow .jodit-wysiwyg {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+#preview-main-scroll.ws-preview-narrow img,
+#preview-main-scroll.ws-preview-narrow .ws-layout-split-half {
+  max-width: 100%;
+}
+
+/* Data grid editor: respect section column count inside manage-content panels */
+.ws-card-grid-editor {
+  display: grid;
+  grid-template-columns: repeat(var(--ws-grid-cols, 2), minmax(0, 1fr));
+  gap: var(--ws-grid-gap, 1rem);
+  width: 100%;
+}
+
+/* Image Gallery Carousel (img_gallery) — fixed media frame; image fills via object-fit: cover */
+.ws-gallery-carousel-text {
+  flex: 1 1 100%;
+  width: 100%;
+  min-width: 0;
+}
+
+.ws-gallery-carousel-media {
+  position: relative;
+  flex: 1 1 100%;
+  width: 100%;
+  height: clamp(12.5rem, 52vw, 20.3125rem);
+  min-height: clamp(12.5rem, 52vw, 20.3125rem);
+  max-height: clamp(12.5rem, 52vw, 20.3125rem);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: transparent;
+}
+
+#preview-main-scroll .ws-gallery-carousel-media__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (min-width: 640px) {
+  .ws-gallery-carousel-media {
+    height: clamp(15rem, 40vw, 20.3125rem);
+    min-height: clamp(15rem, 40vw, 20.3125rem);
+    max-height: clamp(15rem, 40vw, 20.3125rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .ws-gallery-carousel-viewport {
+    min-height: 0;
+  }
+
+  .ws-gallery-carousel-text {
+    flex: 0 0 calc(60% - 1.5rem);
+    width: calc(60% - 1.5rem);
+    max-width: calc(60% - 1.5rem);
+  }
+
+  .ws-gallery-carousel-media {
+    flex: 0 0 calc(40% - 1.5rem);
+    width: calc(40% - 1.5rem);
+    max-width: calc(40% - 1.5rem);
+    height: 325px;
+    min-height: 325px;
+    max-height: 325px;
+  }
+}

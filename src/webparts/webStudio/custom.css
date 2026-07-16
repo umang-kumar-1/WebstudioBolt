@@ -1,0 +1,1683 @@
+/********* SPFX OVERRIDE CSS   *********/
+.CanvasComponent.LCS .grid {
+  padding: 0 !important;
+}
+
+.CanvasComponent.LCS .grid:after,
+.CanvasComponent.LCS .grid:before {
+  content: none !important;
+}
+
+div#SuiteNavPlaceholder {
+  display: none;
+}
+
+.CanvasComponent.LCS,
+.CanvasComponent.LCS .CanvasZone,
+.CanvasComponent.LCS .CanvasZone--alignment,
+.CanvasComponent.LCS .Canvas,
+.CanvasComponent.LCS .ControlZone,
+.CanvasComponent.LCS .CanvasSection,
+.CanvasComponent.LCS .CanvasLayout {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+/* --- Remove the SharePoint inner padding that keeps content boxed --- */
+div[data-automation-id="CanvasZone"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+/* --- Center your web part content --- */
+#workbenchPageContent,
+.CanvasZone,
+.ControlZone {
+  justify-content: center !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* --- Fix top offset issue in Workbench --- */
+#workbenchPageContent {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  position: relative;
+  top: 0 !important;
+}
+
+/* --- Optional: remove extra canvas chrome for full width view --- */
+.CanvasZone--alignment,
+.CanvasZone--section,
+.CanvasSection {
+  max-width: 100% !important;
+}
+
+/* --- Hide SharePoint chrome (optional for full app look) --- */
+#spSiteHeader,
+#spCommandBar,
+.CanvasZone--header,
+#sp-appBar,
+.sp-appBar,
+div#spTopPlaceholder {
+  display: none !important;
+}
+
+/*
+ * Hiding the app bar does not remove its reserved width on modern pages (~48px).
+ * Reset layout insets so published content is not pushed right with a white gutter.
+ */
+#spPageCanvasContent,
+[data-automation-id="contentScrollRegion"],
+.sp-pageLayout,
+.sp-pageLayout__main {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* 100vw includes scrollbar width and causes a right-edge white strip on SharePoint */
+html,
+body {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: clip;
+}
+
+
+.CanvasZoneSectionContainer[data-automation-id='CanvasZone-SectionContainer'] {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+/* Slider + page content — page width only (never navigation / --nav-max-width) */
+.ws-page-width,
+.ws-site-container {
+  width: 100%;
+  max-width: var(--page-max-width, var(--ws-container-max, 100%));
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* Slider content wrapper matches page content width (not navigation width) */
+.ws-slider-content {
+  width: 100%;
+  max-width: var(--page-max-width, var(--ws-container-max, 100%)) !important;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.ws-site-sticky-header .ws-header-inner,
+header .ws-header-inner {
+  width: 100%;
+  max-width: var(--nav-max-width, var(--page-max-width, var(--ws-container-max, 100%)));
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* Optional lg overrides; fall back to page/nav width, then container breakpoints */
+@media (min-width: 1440px) {
+
+  .ws-page-width,
+  .ws-site-container,
+  .ws-slider-content {
+    max-width: var(--page-max-width-lg, var(--page-max-width, var(--ws-container-max, 100%))) !important;
+  }
+
+  .ws-site-sticky-header .ws-header-inner,
+  header .ws-header-inner {
+    max-width: var(--nav-max-width-lg, var(--nav-max-width, var(--page-max-width, var(--ws-container-max, 100%)))) !important;
+  }
+
+  .ws-footer-shell .ws-page-width,
+  .ws-footer-shell .ws-footer-inner {
+    max-width: var(--page-max-width-lg, var(--page-max-width, var(--ws-container-max, 100%))) !important;
+  }
+}
+
+
+.CanvasSection[data-automation-id="CanvasSection"] {
+  padding: 0;
+}
+
+#preview-main-scroll .w-screen,
+#workbenchPageContent .w-screen,
+.w-screen {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+div[data-automation-id="contentScrollRegion"] {
+  overflow: hidden;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* --- Global Typography --- */
+:root {
+  /* No !important on font-family so rich-text editors (Jodit) can apply inline font-family */
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base) !important;
+  --font-bold: 600;
+}
+
+h1,
+.h1 {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-h1) !important;
+  color: var(--heading-h1-color) !important;
+  font-weight: var(--font-weight-bold);
+}
+
+/* Hero / header heading letter case — must win over SharePoint & theme typography */
+h1.ws-hero-heading,
+.ws-hero-heading[role="heading"] {
+  text-transform: var(--ws-heading-letter-case, none) !important;
+  color: var(--ws-heading-color, var(--heading-h1-color)) !important;
+}
+
+/* Hero subheading color — wins over body { color: var(--text-primary) !important } */
+p.ws-hero-subheading {
+  color: var(--ws-subheading-color) !important;
+}
+
+/* Centered section subheadings: full width (custom.css — not in prebuilt Tailwind). */
+.ws-section-subheading-width {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .ws-section-subheading-width {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Straddles the seam between two sections — half above, half below the blue divider. */
+.ws-add-section-divider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  transform: translateY(50%);
+  pointer-events: none;
+}
+
+.ws-add-section-divider__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.ws-add-section-btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /* Flat top of tab icon sits on the divider line (section seam). */
+  transform: translate(-50%, calc(var(--ws-add-section-line-offset, 0px) * -0.5));
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  line-height: 0;
+  pointer-events: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+}
+
+.ws-add-section-btn:focus,
+.ws-add-section-btn:focus-visible,
+.ws-add-section-btn:active {
+  outline: none;
+  box-shadow: none;
+  border: 0;
+}
+
+.ws-add-section-btn svg {
+  display: block;
+  width: 5.25rem;
+  height: 1.575rem;
+}
+
+.ws-add-section-tooltip {
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.35rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: #fff;
+  background: #1f2937;
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+  z-index: 50;
+}
+
+.ws-add-section-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #1f2937;
+}
+
+.ws-add-section-btn:hover .ws-add-section-tooltip,
+.ws-add-section-btn:focus-visible .ws-add-section-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Hero description color — wins over body / jodit inherited colors */
+.ws-hero-description.jodit-wysiwyg,
+.ws-hero-description.jodit-wysiwyg p,
+.ws-hero-description.jodit-wysiwyg span,
+.ws-hero-description.jodit-wysiwyg div,
+.ws-hero-description.jodit-wysiwyg li {
+  color: var(--ws-description-color) !important;
+}
+
+h2,
+.h2 {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-h2) !important;
+  color: var(--heading-h2-color) !important;
+  font-weight: var(--font-weight-bold);
+}
+
+h3,
+.h3 {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-h3) !important;
+  color: var(--heading-h3-color) !important;
+  font-weight: var(--font-weight-bold) !important;
+}
+
+h4,
+.h4 {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-h4) !important;
+  color: var(--heading-h4-color) !important;
+  font-weight: var(--font-weight-bold) !important;
+}
+
+h5,
+.h5 {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-h5) !important;
+  color: var(--heading-h5-color) !important;
+  font-weight: var(--font-weight-bold) !important;
+}
+
+h6,
+.h6 {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-h6) !important;
+  color: var(--heading-h6-color) !important;
+  font-weight: var(--font-weight-bold) !important;
+}
+
+p {
+  font-size: var(--font-size-p) !important;
+}
+
+p,
+span,
+div,
+li,
+td,
+th {
+  /* No !important: Jodit applies font via inline style on these tags */
+  font-family: var(--font-family-base);
+  color: inherit;
+}
+
+.text-primary {
+  color: var(--text-primary) !important;
+}
+
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+.text-link {
+  color: var(--link-color) !important;
+}
+
+.text-link-hover:hover {
+  color: var(--link-hover-color) !important;
+}
+
+body,
+#root,
+.App {
+  color: var(--text-primary) !important;
+  background-color: var(--bg-body) !important;
+}
+
+/* --- Global Link Styles --- */
+a {
+  color: var(--link-color) !important;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--link-hover-color) !important;
+  cursor: pointer;
+}
+
+a[href]:hover {
+  text-decoration: underline !important;
+}
+
+a.btn-primary,
+a.btn-primary:hover,
+a.btn-page-content-cta,
+a.btn-page-content-cta:hover,
+a.btn-secondary,
+a.btn-secondary:hover,
+a.nav-link,
+a.nav-link:hover,
+a.top-nav-link,
+a.top-nav-link:hover,
+a.submenu-link,
+a.submenu-link:hover,
+button,
+button:hover,
+button.ws-smart-page-card-title,
+button.ws-smart-page-card-title:hover {
+  text-decoration: none !important;
+}
+
+button.ws-smart-page-card-title,
+button.ws-smart-page-card-title:hover {
+  color: inherit !important;
+  cursor: pointer;
+}
+
+.nav-link {
+  color: var(--text-primary) !important;
+  font-family: var(--font-family-nav, var(--font-family-base, sans-serif)) !important;
+}
+
+.nav-link:hover {
+  color: var(--primary-color) !important;
+  opacity: 0.8;
+  text-decoration: none !important;
+}
+
+/* --- Global Button Defaults --- */
+button:not(.lucide) {
+  font-family: var(--font-family-base);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+/* --- Global Clickable Cursor --- */
+[role="button"],
+[onclick],
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  cursor: pointer;
+}
+
+button:disabled,
+input:disabled {
+  cursor: not-allowed;
+}
+
+/* Base Primary Button Injection */
+.btn-primary,
+button.bg-blue-600,
+button.bg-blue-500,
+button.bg-blue-700,
+button.bg-primary,
+button.bg-\[var\(--btn-primary-bg\)\],
+button.bg-\[var\(--primary-color\)\] {
+  background-color: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-text) !important;
+  padding: var(--btn-padding-y) var(--btn-padding-x) !important;
+  font-size: var(--btn-font-size);
+  border-radius: var(--border-radius-md) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+.btn-primary:hover,
+button.bg-blue-600:hover,
+button.bg-blue-500:hover,
+button.bg-primary:hover {
+  background-color: var(--btn-primary-hover-bg) !important;
+  opacity: 0.95 !important;
+  transform: translateY(-1px);
+}
+
+/* Keep icons white inside primary (blue) buttons */
+.btn-primary svg,
+button.bg-blue-600 svg,
+button.bg-blue-500 svg,
+button.bg-blue-700 svg,
+button.bg-primary svg,
+button.bg-\[var\(--btn-primary-bg\)\] svg,
+button.bg-\[var\(--primary-color\)\] svg {
+  color: var(--btn-primary-text, #ffffff) !important;
+  stroke: var(--btn-primary-text, #ffffff) !important;
+}
+
+a.btn-primary:hover {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* Language selector open state — avoid global primary-button font/padding overrides */
+.ws-lang-selector button.ws-lang-selector-trigger--open {
+  background-color: var(--primary-color) !important;
+  color: var(--text-on-primary, #ffffff) !important;
+  font-size: 10px !important;
+  padding: 0.375rem 0.75rem !important;
+  border-radius: 0.125rem !important;
+}
+
+.ws-lang-selector button.ws-lang-selector-trigger--open svg {
+  color: var(--text-on-primary, #ffffff) !important;
+  stroke: var(--text-on-primary, #ffffff) !important;
+}
+
+/* Text header (page_content): CTA uses heading color — matches template reference */
+.btn-page-content-cta,
+a.btn-page-content-cta {
+  background-color: var(--heading-color) !important;
+  color: #ffffff !important;
+  padding: var(--btn-padding-y) var(--btn-padding-x) !important;
+  font-size: var(--btn-font-size);
+  border-radius: var(--border-radius-md) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+.btn-page-content-cta:hover,
+a.btn-page-content-cta:hover {
+  filter: brightness(0.94);
+  opacity: 0.98 !important;
+  transform: translateY(-1px);
+}
+
+a.btn-page-content-cta:hover {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* Hero / card action buttons — typography + radius from editor (overrides theme defaults) */
+.btn-primary.ws-hero-action-btn,
+a.btn-primary.ws-hero-action-btn,
+.btn-page-content-cta.ws-hero-action-btn,
+a.btn-page-content-cta.ws-hero-action-btn {
+  border-radius: var(--ws-btn-radius, 0.125rem) !important;
+  font-size: var(--ws-btn-font-size, var(--btn-font-size)) !important;
+  font-weight: var(--ws-btn-font-weight, 700) !important;
+  text-transform: var(--ws-btn-text-transform, none) !important;
+}
+
+.ws-data-grid-card-body {
+  padding: 1rem 1.5rem 2.25rem !important;
+  box-sizing: border-box;
+}
+
+.ws-data-grid-card-body.no-bg-border {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.ws-data-grid-card-body.no-bg-border-left-img {
+  padding-right: 0 !important;
+  padding-left: 1.5rem !important;
+}
+
+.ws-data-grid-card-body.no-bg-border-right-img {
+  padding-left: 0 !important;
+  padding-right: 1.5rem !important;
+}
+
+
+.ws-data-grid-card-date {
+  padding-top: 0.25rem !important;
+  margin-bottom: 0.625rem !important;
+}
+
+.ws-data-grid-card-desc {
+  padding: 0.875rem 0rem !important;
+  text-align: start;
+}
+
+.ws-data-grid-card-cta {
+  padding-top: 0.875rem !important;
+  padding-bottom: 0.75rem !important;
+}
+
+.ws-data-grid-card-numbered-row {
+  column-gap: 1rem !important;
+}
+
+.ws-data-grid-card-desc p,
+.ws-data-grid-card-desc .jodit-wysiwyg {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Card title text lives in span/a/button — must inherit container font (global span uses base font) */
+.ws-card-title-container span,
+.ws-card-title-container a,
+.ws-card-title-container button,
+.ws-smart-page-card-title {
+  font-family: inherit !important;
+}
+
+/* Metadata footer action links (delete, share, version history) */
+.ws-metadata-footer-action {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0 !important;
+  margin: 0;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.ws-metadata-footer-action svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Image slider pagination dots — must not inherit theme button padding */
+button.ws-slider-dot {
+  padding: 0 !important;
+  margin: 0 !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  width: 8px !important;
+  height: 8px !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 9999px !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+button.ws-slider-dot-active {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+/* Slider text overlay — page content width only (not navigation width) */
+.ws-slider-content {
+  box-sizing: border-box;
+}
+
+/* Slider carousel split layout: 60% text content, 40% image frame */
+.ws-slider-split-media {
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  width: 40% !important;
+  max-width: 40% !important;
+  height: 100% !important;
+}
+
+.ws-slider-split-media--img-right {
+  left: 60% !important;
+  right: auto !important;
+}
+
+.ws-slider-split-text-panel {
+  width: 60% !important;
+  max-width: 60% !important;
+}
+
+/* Slider controls — arrows in outer 10% gutters, edit aligned to content band */
+.ws-slider-nav-arrows {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 10%) minmax(0, 80%) minmax(0, 10%);
+  align-items: center;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.ws-slider-nav-arrows>button {
+  pointer-events: auto;
+}
+
+.ws-slider-nav-arrows>button:first-child {
+  grid-column: 1;
+  justify-self: center;
+}
+
+.ws-slider-nav-arrows>button:last-child {
+  grid-column: 3;
+  justify-self: center;
+}
+
+/* Compact square chevrons — exclude from theme button padding/min-height */
+button.ws-slider-chevron-btn,
+button.ws-slider-chevron-btn.btn-primary,
+button.ws-slider-chevron-btn.bg-gray-100 {
+  width: 2rem !important;
+  height: 2rem !important;
+  min-width: 2rem !important;
+  min-height: 2rem !important;
+  max-width: 2rem !important;
+  max-height: 2rem !important;
+  padding: 0 !important;
+  border-radius: var(--border-radius-sm, 0.125rem) !important;
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0;
+}
+
+button.ws-slider-chevron-btn.btn-primary:hover {
+  transform: none;
+}
+
+/* Compact toolbar controls — exclude from theme button padding (view toggles, filter/add actions) */
+button.ws-view-toggle-btn,
+button.ws-view-toggle-btn.bg-\[var\(--btn-primary-bg\)\] {
+  padding: 0.375rem !important;
+  border-radius: 0 !important;
+  min-height: unset !important;
+  line-height: 1 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  font-size: inherit !important;
+}
+
+button.ws-view-toggle-btn:hover {
+  transform: none !important;
+}
+
+button.ws-view-toggle-label-btn,
+button.ws-view-toggle-label-btn.bg-\[var\(--btn-primary-bg\)\] {
+  padding: 0.375rem 0.75rem !important;
+  border-radius: 0 !important;
+  min-height: unset !important;
+  line-height: 1.25 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  font-size: 0.75rem !important;
+}
+
+button.ws-view-toggle-label-btn:hover {
+  transform: none !important;
+}
+
+button.ws-compact-toolbar-btn,
+button.ws-compact-toolbar-btn.bg-\[var\(--btn-primary-bg\)\],
+button.ws-compact-toolbar-btn.bg-\[var\(--primary-color\)\] {
+  padding: 0.5rem 1rem !important;
+  border-radius: var(--border-radius-sm, 0.125rem) !important;
+  min-height: unset !important;
+  line-height: 1.25 !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+  transform: none !important;
+  font-size: 0.875rem !important;
+}
+
+button.ws-compact-toolbar-btn--sm,
+button.ws-compact-toolbar-btn--sm.bg-\[var\(--btn-primary-bg\)\] {
+  padding: 0.375rem 1rem !important;
+  font-size: 0.875rem !important;
+}
+
+button.ws-compact-toolbar-btn:hover,
+button.ws-compact-toolbar-btn--sm:hover {
+  transform: none !important;
+}
+
+/* Content-alignment segmented controls in editors:
+   avoid inheriting global primary button padding/radius. */
+button.ws-content-align-btn {
+  padding: 0 !important;
+  height: 2.5rem !important;
+  min-height: 2.5rem !important;
+  max-height: 2.5rem !important;
+  border-radius: 0 !important;
+  line-height: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.btn-secondary,
+button.bg-gray-100 {
+  background-color: var(--btn-secondary-bg) !important;
+  color: var(--btn-secondary-text) !important;
+  border: 1px solid var(--border-color) !important;
+  padding: var(--btn-padding-y) var(--btn-padding-x) !important;
+  font-size: var(--btn-font-size) !important;
+  border-radius: var(--border-radius-md) !important;
+  line-height: 1.25 !important;
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-hover) !important;
+  opacity: 0.95 !important;
+}
+
+
+/* Theme-aware Text Colors */
+.text-\[var\(--primary-color\)\],
+.text-\[var\(--link-color\)\],
+.text-\[var\(--sidebar-icon-color\)\],
+.text-\[var\(--sidebar-active-text-color\)\],
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.text-\[var\(--link-color\)\] {
+  color: var(--link-color) !important;
+}
+
+.text-\[var\(--sidebar-icon-color\)\] {
+  color: var(--sidebar-icon-color) !important;
+}
+
+.text-\[var\(--sidebar-active-text-color\)\] {
+  color: var(--sidebar-active-text-color) !important;
+}
+
+.border-\[var\(--primary-color\)\],
+.border-\[var\(--sidebar-border-color\)\],
+.border-blue-600 {
+  border-color: var(--primary-color) !important;
+}
+
+.bg-\[var\(--primary-color\)\],
+.bg-\[var\(--sidebar-button-color\)\],
+.bg-\[var\(--sidebar-active-bg\)\],
+.bg-\[var\(--sidebar-active-indicator-color\)\] {
+  background-color: var(--primary-color) !important;
+}
+
+.bg-\[var\(--sidebar-button-color\)\] {
+  background-color: var(--sidebar-button-color) !important;
+}
+
+.bg-\[var\(--sidebar-active-bg\)\] {
+  background-color: var(--sidebar-active-bg) !important;
+}
+
+.bg-\[var\(--sidebar-active-indicator-color\)\] {
+  background-color: var(--sidebar-active-indicator-color) !important;
+}
+
+.bg-blue-50,
+.bg-primary-light,
+.bg-\[var\(--brand-light\)\],
+.hover\:bg-blue-50:hover,
+.hover\:bg-slate-50:hover {
+  background-color: var(--brand-light) !important;
+}
+
+.border-blue-100 {
+  border-color: var(--brand-light) !important;
+}
+
+/* --- Sidebar Theme Support --- */
+.sidebar-active {
+  background-color: var(--sidebar-active-bg);
+  color: var(--sidebar-active-text-color);
+  border-left: 3px solid var(--sidebar-active-indicator-color);
+}
+
+/* --- Footer Custom Link Styles --- */
+.footer-table-link {
+  color: var(--custom-link-color) !important;
+  transition: color 0.15s ease-in-out !important;
+}
+
+.footer-table-link:hover {
+  color: var(--custom-link-hover-color) !important;
+  opacity: 1 !important;
+}
+
+/* --- Scrollbar visibility for admin area --- */
+.admin-scroll {
+  overflow-y: auto !important;
+  scrollbar-width: thin;
+  /* Firefox */
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+}
+
+.admin-scroll::-webkit-scrollbar {
+  width: 10px !important;
+  display: block !important;
+}
+
+.admin-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.admin-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.admin-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Ensure the scroll container has explicit height constraint if flex fails */
+#preview-main-scroll {
+  flex: 1;
+  min-height: 0;
+}
+
+
+
+ol,
+ul {
+  list-style-position: initial !important;
+  list-style-image: initial !important;
+  padding-left: 2em !important;
+}
+
+ol:not([style*="list-style-type"]) {
+  list-style-type: decimal !important;
+}
+
+ul:not([style*="list-style-type"]) {
+  list-style-type: disc !important;
+}
+
+footer ol,
+footer ul,
+.footer-management-popup ol,
+.footer-management-popup ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.font-bold {
+  font-weight: var(--font-bold) !important;
+}
+
+.top-nav-link:focus-visible {
+  border: none;
+  outline: none;
+}
+
+a.top-nav-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: 4px !important;
+  white-space: nowrap;
+  font-family: var(--font-family-nav, var(--font-family-base, sans-serif)) !important;
+}
+
+.header-logo-text {
+  font-family: var(--font-family-nav, var(--font-family-base, sans-serif)) !important;
+}
+
+a.top-nav-link svg {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Global span { font-family: base } must not override nav menu label typography */
+a.top-nav-link span,
+.nav-link.top-nav-link span,
+#ws-mobile-nav-panel a.top-nav-link {
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+  color: inherit !important;
+}
+
+a.submenu-link span,
+.nav-link.submenu-link span {
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+  color: inherit !important;
+}
+
+.ws-top-nav-item {
+  position: relative !important;
+  flex-shrink: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+nav.ws-top-nav-bar {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  flex-wrap: nowrap;
+}
+
+.ws-top-nav-scroll-host {
+  position: relative;
+  overflow: visible !important;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.ws-top-nav-bar a.top-nav-link {
+  white-space: nowrap;
+}
+
+.ws-top-nav-dropdown {
+  display: none;
+}
+
+.ws-top-nav-item:hover .ws-top-nav-dropdown,
+.ws-top-nav-item:focus-within .ws-top-nav-dropdown {
+  display: block !important;
+}
+
+/* Force multi-line truncation even with aggressive global CSS overrides */
+.desc-clamp-5,
+.desc-clamp-6,
+.desc-clamp-7 {
+  display: block !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.desc-clamp-5 {
+  --desc-lines: 5;
+  --desc-line-height: 1.625;
+  line-height: calc(var(--desc-line-height) * 1em) !important;
+  max-height: calc(var(--desc-line-height) * var(--desc-lines) * 1em) !important;
+}
+
+.desc-clamp-6 {
+  --desc-lines: 6;
+  --desc-line-height: 1.5;
+  line-height: calc(var(--desc-line-height) * 1em) !important;
+  max-height: calc(var(--desc-line-height) * var(--desc-lines) * 1em) !important;
+}
+
+.desc-clamp-7 {
+  --desc-lines: 7;
+  --desc-line-height: 1.5;
+  line-height: calc(var(--desc-line-height) * 1em) !important;
+  max-height: calc(var(--desc-line-height) * var(--desc-lines) * 1em) !important;
+}
+
+@supports (-webkit-line-clamp: 1) {
+  .desc-clamp-5,
+  .desc-clamp-6,
+  .desc-clamp-7 {
+    display: -webkit-box !important;
+    -webkit-line-clamp: var(--desc-lines) !important;
+    line-clamp: var(--desc-lines) !important;
+    -webkit-box-orient: vertical !important;
+    max-height: none !important;
+  }
+}
+
+/* Image gallery carousel — row height follows content; image frame size is fixed in responsive.css */
+.ws-gallery-carousel-viewport {
+  min-height: 0;
+}
+
+.ws-gallery-carousel-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.ws-gallery-carousel-text__body {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.ws-gallery-carousel-text__controls {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.ws-slider-slide-title-truncate {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.ws-slider-nav-tab__label {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.ws-slider-nav-tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Gallery carousel tabs — full row, evenly spaced (concept: space-between) */
+.ws-gallery-carousel .ws-gallery-carousel-nav-tabs {
+  justify-content: space-between;
+}
+
+.ws-gallery-carousel .ws-slider-nav-tab {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: calc((100% - 48px) / 3);
+}
+
+.ws-gallery-carousel .ws-slider-nav-tab--first {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.ws-gallery-carousel .ws-slider-nav-tab--middle {
+  justify-content: center;
+  text-align: center;
+}
+
+.ws-gallery-carousel .ws-slider-nav-tab--last {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.ws-gallery-carousel .ws-slider-nav-tab--last .ws-slider-nav-tab__label {
+  text-align: right;
+}
+
+.ws-slider-read-more {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.ws-slider-read-more:hover {
+  text-decoration: underline;
+}
+
+/* Contact form — hero band + overlapping form card */
+.ws-contact-form-section {
+  --ws-contact-overlap: 9rem;
+}
+
+.ws-contact-hero {
+  padding-top: 2rem;
+  padding-bottom: var(--ws-contact-overlap);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.ws-contact-form-overlap {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: calc(-1 * var(--ws-contact-overlap));
+  padding-bottom: 2rem;
+}
+
+.ws-contact-form-width {
+  width: 100%;
+  max-width: 100%;
+}
+
+.ws-contact-form-card {
+  padding: 2rem;
+  border-radius: var(--ws-contact-card-radius, var(--border-radius-lg, var(--border-radius-md))) !important;
+  overflow: hidden;
+}
+
+#preview-main-scroll .ws-contact-form-card input:not([type="checkbox"]),
+#preview-main-scroll .ws-contact-form-card textarea,
+#preview-main-scroll .ws-contact-form-card select {
+  border-radius: 4px !important;
+  border-color: #bdbdbd !important;
+  color: #333333 !important;
+  font-family: var(--font-family-base, sans-serif) !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
+
+#preview-main-scroll .ws-contact-form-card input::placeholder,
+#preview-main-scroll .ws-contact-form-card textarea::placeholder {
+  color: #555555 !important;
+  opacity: 1;
+}
+
+#preview-main-scroll .ws-contact-form-card input[type="checkbox"] {
+  border-radius: 2px !important;
+  border-color: #bdbdbd !important;
+}
+
+#preview-main-scroll .ws-contact-form-card button {
+  border-radius: 4px !important;
+}
+
+/* Contact form validation */
+.ws-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ws-form-field__label {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #333333;
+  font-family: var(--font-family-base, sans-serif);
+  margin-bottom: 0;
+}
+
+.ws-form-control {
+  padding: 0.625rem 0.75rem;
+  line-height: 20px;
+  border-radius: 4px !important;
+}
+
+.ws-form-control--invalid {
+  box-shadow: inset 2px 0 0 #f87171;
+}
+
+.ws-form-error {
+  display: block;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  font-weight: 500;
+  color: #dc2626;
+}
+
+.ws-contact-form-card .ws-form-control.resize-none {
+  min-height: 8.5rem;
+}
+
+.ws-form-submit-error {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  font-weight: 500;
+  color: #dc2626;
+}
+
+@media (min-width: 768px) {
+  .ws-contact-form-width {
+    width: 640px;
+  }
+
+  .ws-contact-hero {
+    padding-top: 3rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .ws-contact-form-overlap {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-bottom: 3rem;
+  }
+
+  .ws-contact-form-card {
+    padding: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ws-contact-hero {
+    padding-top: 4rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .ws-contact-form-overlap {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 4rem;
+  }
+
+}
+
+/* Edit Translation popup — full-viewport backdrop above nested modals */
+.ws-label-editor-overlay {
+  z-index: 100000 !important;
+}
+
+.ws-label-editor-backdrop {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.ws-image-opt-overlay-bar {
+  background-color: rgba(17, 24, 39, 0.92) !important;
+}
+
+/* Select Header Template — full description text, centered in every card */
+.ws-template-card-desc-block {
+  text-align: center;
+}
+
+.ws-template-card-desc {
+  max-width: 16rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Full-screen template preview — z-index set inline via getNestedPortalZFromStore */
+.ws-template-fullscreen-preview-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: #000000;
+  animation: ws-template-preview-fade-in 0.2s ease-out;
+}
+
+@keyframes ws-template-preview-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Full-screen template preview — high-contrast close control on any background */
+.ws-fullscreen-preview-close {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  background-color: rgba(17, 24, 39, 0.85) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.ws-fullscreen-preview-close:hover {
+  background-color: rgba(17, 24, 39, 0.96) !important;
+  border-color: rgba(255, 255, 255, 0.55) !important;
+}
+
+.ws-fullscreen-preview-close:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Container / Page tagging fields — Categories-style compact chips */
+.ws-tagging-lookup-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.ws-tagging-lookup-field {
+  max-width: none;
+  width: 100%;
+  min-width: 0;
+}
+
+.ws-tagging-lookup-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  color: #323130;
+  font-weight: 400;
+}
+
+.ws-tagging-lookup-control {
+  border: 1px solid #c8c6c4;
+  border-radius: 2px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.ws-tagging-lookup-search-row {
+  display: flex;
+  align-items: center;
+  min-height: 2rem;
+}
+
+.ws-tagging-lookup-control--has-tags .ws-tagging-lookup-search-row {
+  border-bottom: 1px solid #edebe9;
+}
+
+.ws-tagging-lookup-search-input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  padding: 0.375rem 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  color: #323130;
+  cursor: default;
+}
+
+.ws-tagging-lookup-search-input::placeholder {
+  color: #a19f9d;
+}
+
+.ws-tagging-lookup-pencil {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem 0.5rem;
+  color: var(--primary-color) !important;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.ws-tagging-lookup-pencil:hover:not(:disabled) {
+  background: #f3f2f1;
+}
+
+.ws-tagging-lookup-pencil--disabled {
+  color: #c8c6c4 !important;
+  cursor: not-allowed;
+}
+
+.ws-tagging-lookup-tag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 2rem;
+  padding: 0.375rem 0.5rem 0.375rem 0.625rem;
+  background-color: var(--primary-color) !important;
+  color: #ffffff;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+}
+
+.ws-tagging-lookup-tag+.ws-tagging-lookup-tag {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.ws-tagging-lookup-tag-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ws-tagging-lookup-tag-remove {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #ffffff !important;
+  cursor: pointer;
+  opacity: 0.95;
+}
+
+.ws-tagging-lookup-tag-remove:hover:not(:disabled) {
+  opacity: 1;
+}
+
+.ws-tagging-lookup-tag-remove:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ws-tagging-lookup-tag-remove svg {
+  stroke-width: 2.25px;
+}
+
+/* Tagging removal confirm — explicit z-index (z-[210] is not in prebuilt tailwind.css) */
+.ws-tagging-confirm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1460;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.ws-tagging-confirm-dialog {
+  width: 100%;
+  max-width: 32.5rem;
+  background: #ffffff;
+  border: 1px solid #c8c6c4;
+  border-radius: 2px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ws-tagging-confirm-dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #edebe9;
+}
+
+.ws-tagging-confirm-dialog__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.ws-tagging-confirm-dialog__close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #a19f9d;
+  cursor: pointer;
+}
+
+.ws-tagging-confirm-dialog__close:hover:not(:disabled) {
+  color: #605e5c;
+}
+
+.ws-tagging-confirm-dialog__body {
+  padding: 1rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #323130;
+}
+
+.ws-tagging-confirm-dialog__body p {
+  margin: 0 0 0.75rem;
+}
+
+.ws-tagging-confirm-dialog__body p:last-child {
+  margin-bottom: 0;
+}
+
+.ws-tagging-confirm-dialog__list {
+  margin: 0.5rem 0 0.75rem 1.25rem;
+  padding: 0;
+}
+
+.ws-tagging-confirm-dialog__list li {
+  margin-bottom: 0.25rem;
+}
+
+.ws-tagging-confirm-dialog__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #edebe9;
+  background: #ffffff;
+}
+
+.ws-tagging-picker-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1090;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Details Panel Drawer style */
+.ws-details-panel {
+  width: 100% !important;
+}
+
+@media (min-width: 640px) {
+  .ws-details-panel {
+    width: 500px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .ws-details-panel {
+    width: 600px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ws-details-panel {
+    width: 650px !important;
+  }
+}
+
+/* Details Panel Image and Content Alignment styles */
+.ws-details-panel-content-wrapper {
+  display: block !important;
+}
+
+.ws-details-panel-img-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  float: none !important;
+  margin-right: 0 !important;
+  margin-bottom: 1.5rem !important;
+  border-radius: 0.125rem !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+  background-color: #f9fafb !important;
+  border: 1px solid #f3f4f6 !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.ws-details-panel-img {
+  max-height: 300px !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
+@media (min-width: 640px) {
+  .ws-details-panel-img-container {
+    float: left !important;
+    margin-right: 1.5rem !important;
+    margin-bottom: 1rem !important;
+    width: 50% !important;
+    max-width: 280px !important;
+    display: block !important;
+  }
+  
+  .ws-details-panel-img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    max-height: none !important;
+  }
+}

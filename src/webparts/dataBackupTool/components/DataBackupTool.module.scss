@@ -1,0 +1,513 @@
+// Note: the old SPFx `@import '~@fluentui/react/dist/sass/References.scss'` is not resolvable
+// by Vite's Sass pipeline (webpack-only `~` alias) and isn't needed since every `var(--x, fallback)`
+// below already carries its own fallback value.
+
+.root {
+  max-width: 960px;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: 1px solid var(--neutralLight, #edebe9);
+  background: var(--white, #ffffff);
+  box-shadow: 0 1.6px 3.6px rgba(0, 0, 0, 0.07), 0 0.3px 0.9px rgba(0, 0, 0, 0.11);
+  overflow: hidden;
+  color: var(--bodyText, #323130);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  background: linear-gradient(180deg, var(--neutralLighterAlt, #faf9f8) 0%, var(--white, #fff) 100%);
+  border-bottom: 1px solid var(--neutralLight, #edebe9);
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--bodyText, #323130);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--neutralSecondary, #605e5c);
+}
+
+.siteBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: var(--themePrimary, #0078d4);
+  color: var(--white, #ffffff);
+}
+
+.statsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 20px;
+  background: var(--neutralLighterAlt, #faf9f8);
+  border-bottom: 1px solid var(--neutralLight, #edebe9);
+}
+
+.statCard {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: var(--white, #ffffff);
+  border: 1px solid var(--neutralLight, #edebe9);
+}
+
+.statValue {
+  display: block;
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--themeDark, #004578);
+}
+
+.statLabel {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--neutralSecondary, #605e5c);
+  margin-top: 4px;
+}
+
+.section {
+  padding: 16px 20px 8px;
+}
+
+.sectionHeadingRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--bodyText, #323130);
+}
+
+.selectionToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+}
+
+.btnLink {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: inherit;
+  font-weight: 600;
+  color: var(--themePrimary, #0078d4);
+  text-decoration: underline;
+
+  &:hover:not(:disabled) {
+    color: var(--themeDark, #004578);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    text-decoration: none;
+  }
+}
+
+.toolbarSep {
+  color: var(--neutralTertiary, #a19f9d);
+  user-select: none;
+}
+
+.selectedHint {
+  color: var(--neutralSecondary, #605e5c);
+  font-weight: 500;
+}
+
+.searchWrap {
+  margin-bottom: 14px;
+}
+
+.searchInput {
+  width: 100%;
+  max-width: 320px;
+  padding: 8px 12px;
+  font-size: 0.875rem;
+  border: 1px solid var(--neutralLight, #edebe9);
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.15s ease;
+
+  &:focus {
+    border-color: var(--themePrimary, #0078d4);
+    box-shadow: 0 0 0 1px var(--themePrimary, #0078d4);
+  }
+
+  &::placeholder {
+    color: var(--neutralTertiary, #a19f9d);
+  }
+}
+
+.listGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+  max-height: min(52vh, 420px);
+  overflow-y: auto;
+  padding-right: 4px;
+  margin-bottom: 4px;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--neutralTertiaryAlt, #c8c6c4);
+    border-radius: 4px;
+  }
+}
+
+.listCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--neutralLight, #edebe9);
+  background: var(--white, #ffffff);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    border-color: var(--themeLight, #c7e0f4);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.listCheckbox {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--themePrimary, #0078d4);
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+}
+
+.listCardBody {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.listName {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.35;
+  word-break: break-word;
+  color: var(--bodyText, #323130);
+}
+
+.countBadge {
+  flex-shrink: 0;
+  min-width: 2rem;
+  padding: 4px 8px;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 10px;
+  background: var(--neutralLighterAlt, #faf9f8);
+  color: var(--neutralPrimary, #323130);
+  border: 1px solid var(--neutralLight, #edebe9);
+}
+
+.countBadgeZero {
+  opacity: 0.75;
+  color: var(--neutralSecondary, #605e5c);
+}
+
+.emptyState {
+  padding: 24px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--neutralSecondary, #605e5c);
+}
+
+.timesheetSection {
+  padding: 0 20px 12px;
+  border-top: 1px solid var(--neutralLight, #edebe9);
+}
+
+.timesheetTitle {
+  margin: 14px 0 10px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--neutralSecondary, #605e5c);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--neutralLight, #edebe9);
+  background: var(--neutralLighterAlt, #faf9f8);
+}
+
+.toolbarUpload {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.fileInputLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.fileInputHidden {
+  position: absolute;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.fileInputButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border-radius: 4px;
+  border: 1px solid var(--neutralSecondary, #605e5c);
+  background: var(--white, #ffffff);
+  color: var(--bodyText, #323130);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    background: var(--neutralLighterAlt, #faf9f8);
+    border-color: var(--neutralPrimary, #323130);
+  }
+}
+
+.fileName {
+  font-size: 0.8125rem;
+  color: var(--neutralSecondary, #605e5c);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+  width: 100%;
+}
+
+.selectGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 280px;
+  flex: 1;
+}
+
+.selectLabel {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--neutralSecondary, #605e5c);
+}
+
+.selectInput {
+  width: 100%;
+  height: 40px;
+  padding: 8px 10px;
+  font-size: 0.8125rem;
+  border-radius: 4px;
+  border: 1px solid var(--neutralLight, #edebe9);
+  background: var(--white, #ffffff);
+  color: var(--bodyText, #323130);
+  outline: none;
+
+  &:focus {
+    border-color: var(--themePrimary, #0078d4);
+    box-shadow: 0 0 0 1px var(--themePrimary, #0078d4);
+  }
+}
+
+.btnPrimary {
+  height: 40px;
+  padding: 0 16px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background: var(--themePrimary, #0078d4);
+  color: var(--white, #ffffff);
+  transition: filter 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover:not(:disabled) {
+    filter: brightness(1.05);
+    box-shadow: 0 2px 4px rgba(0, 120, 212, 0.35);
+  }
+
+  &:active:not(:disabled) {
+    filter: brightness(0.95);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    box-shadow: none;
+    filter: none;
+  }
+}
+
+.progressSection {
+  padding: 12px 20px 18px;
+  border-top: 1px solid var(--neutralLight, #edebe9);
+  background: var(--white, #ffffff);
+}
+
+.progressMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 0.8125rem;
+}
+
+.progressCounts {
+  font-weight: 600;
+  color: var(--bodyText, #323130);
+}
+
+.progressLabel {
+  color: var(--neutralSecondary, #605e5c);
+  font-weight: 500;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.progressTrack {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--neutralLighterAlt, #faf9f8);
+  border: 1px solid var(--neutralLight, #edebe9);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--themePrimary, #0078d4),
+    var(--themeDark, #004578)
+  );
+  transition: width 0.2s ease;
+}
+
+@media (max-width: 640px) {
+  .actions {
+    align-items: stretch;
+  }
+
+  .selectGroup {
+    min-width: 100%;
+  }
+
+  .btnPrimary {
+    width: 100%;
+  }
+}
+
+.successBanner {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  background: var(--successBackground, #dff6dd);
+  color: var(--successText, #107c10);
+  border: 1px solid var(--successIcon, #107c10);
+}
+
+.welcome {
+  text-align: center;
+}
+
+.welcomeImage {
+  width: 100%;
+  max-width: 420px;
+}
+
+.links {
+  a {
+    text-decoration: none;
+    color: var(--link, #03787c);
+
+    &:hover {
+      text-decoration: underline;
+      color: var(--linkHovered, #014446);
+    }
+  }
+}
+
+.siteDataBackupTool {
+  overflow: hidden;
+  padding: 1em;
+  color: var(--bodyText, #323130);
+
+  &.teams {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+}

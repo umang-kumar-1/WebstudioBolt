@@ -1,3 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Do not @import 'tailwindcss' here — Web Studio uses SPFx prebuilt utilities via webStudioStyles.ts.
+   Tailwind v4 at the root was overriding md:grid-cols-*, line-clamp-*, btn-* and breaking modal layout. */
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}

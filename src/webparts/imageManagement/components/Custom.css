@@ -1,0 +1,355 @@
+/********* SPFX OVERRIDE CSS   *********/
+
+/* Scope these to the app if possible, or use more specific selectors to avoid breaking workbench */
+
+/* These target the web part container itself */
+.CanvasComponent.LCS,
+.CanvasComponent.LCS .CanvasZone,
+.CanvasComponent.LCS .CanvasZone--alignment,
+.CanvasComponent.LCS .Canvas,
+.CanvasComponent.LCS .ControlZone,
+.CanvasComponent.LCS .CanvasSection,
+.CanvasComponent.LCS .CanvasLayout {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+}
+
+/* --- Remove the SharePoint inner padding that keeps content boxed --- */
+/* CAUTION: This affects the entire page */
+div[data-automation-id="CanvasZone"] {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+}
+
+/* --- Center your web part content --- */
+#workbenchPageContent,
+.CanvasZone,
+.ControlZone {
+    justify-content: center !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* --- Fix top offset issue in Workbench --- */
+#workbenchPageContent {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    position: relative;
+    top: 0 !important;
+}
+
+/* --- Optional: remove extra canvas chrome for full width view --- */
+.CanvasZone--alignment,
+.CanvasZone--section,
+.CanvasSection {
+    max-width: 100% !important;
+}
+
+/* --- Hide SharePoint chrome (optional for full app look) --- */
+#spSiteHeader,
+#spCommandBar,
+.CanvasZone--header,
+.sp-appBar,
+div#spTopPlaceholder {
+    display: none !important;
+}
+
+
+.CanvasZoneSectionContainer[data-automation-id='CanvasZone-SectionContainer'] {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+
+.CanvasSection[data-automation-id="CanvasSection"] {
+    padding: 0;
+}
+
+/* Fix Bootstrap conflicts */
+#sdv-connect-app {
+    /* Ensure reset for Bootstrap */
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+#sdv-connect-app *,
+#sdv-connect-app *::before,
+#sdv-connect-app *::after {
+    box-sizing: inherit;
+}
+
+/* Custom Colors */
+#sdv-connect-app .bg-sdv-blue {
+    background-color: #003366;
+}
+
+/* Dark Blue */
+#sdv-connect-app .bg-sdv-blue-dark {
+    background-color: #002244;
+}
+
+/* Darker Blue */
+#sdv-connect-app .bg-sdv-teal {
+    background-color: #008080;
+}
+
+/* Teal */
+#sdv-connect-app .text-sdv-teal {
+    color: #008080;
+}
+
+#sdv-connect-app .bg-sdv-orange {
+    background-color: #FF8C00;
+}
+
+#sdv-connect-app .hover-text-sdv-teal:hover {
+    color: #008080 !important;
+}
+
+/* Sidebar Styles */
+#sdv-connect-app .sidebar {
+    width: 250px;
+    min-width: 250px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    z-index: 9999;
+}
+
+#sdv-connect-app .nav-link-custom {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-left: 4px solid transparent;
+}
+
+#sdv-connect-app .nav-link-custom:hover,
+#sdv-connect-app .nav-link-custom.active {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+#sdv-connect-app .nav-link-custom.active {
+    border-left-color: #008080;
+    /* sdv-teal */
+    background: linear-gradient(90deg, rgba(0, 128, 128, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+#sdv-connect-app .tracking-wider {
+    letter-spacing: 0.1em;
+}
+
+#sdv-connect-app .object-fit-cover {
+    object-fit: cover;
+}
+
+/* Header Input */
+#sdv-connect-app .form-control-sdv {
+    border-radius: 50px;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+}
+
+#sdv-connect-app .form-control-sdv:focus {
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(0, 128, 128, 0.1);
+    border-color: #008080;
+}
+
+#spLeftNav {
+    display: none !important;
+}
+
+.CanvasComponent.LCS .grid:after,
+.CanvasComponent.LCS .grid:before,
+.grid:after,
+.grid:before {
+    content: none !important;
+}
+
+
+.grid {
+    padding: 0 !important;
+}
+
+/* Explicitly set modal background to white */
+.edit-modal-large {
+    background-color: #ffffff !important;
+    color: #323130;
+    /* Ensure text is dark */
+    width: 85vw !important;
+    height: 90vh !important;
+    max-width: 1400px !important;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Ensure Add Image modal body scrolls while footer stays visible */
+.edit-modal-large .addimg {
+    overflow-y: auto;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+/* Ensure modal content fills height and enables scrolling */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Dynamic Theme Integration */
+.bg-SiteColor {
+    background-color: var(--primary-color) !important;
+    color: var(--text-on-primary) !important;
+}
+
+.siteColor {
+    color: var(--primary-color) !important;
+}
+
+/* Bootstrap Overrides with Theme Variables */
+#sdv-connect-app .btn-primary,
+.modal-content .btn-primary,
+.photogallery-container .btn-primary {
+    background-color: var(--btn-primary-bg) !important;
+    border-color: var(--btn-primary-bg) !important;
+    color: var(--btn-primary-text) !important;
+    transition: all 0.2s ease;
+}
+
+#sdv-connect-app .btn-primary:hover,
+.modal-content .btn-primary:hover,
+.photogallery-container .btn-primary:hover {
+    background-color: var(--btn-primary-hover-bg) !important;
+    border-color: var(--btn-primary-hover-bg) !important;
+    opacity: 0.9;
+}
+
+#sdv-connect-app .btn-outline-primary,
+.photogallery-container .btn-outline-primary {
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+#sdv-connect-app .btn-outline-primary:hover,
+.photogallery-container .btn-outline-primary:hover {
+    background-color: var(--primary-color) !important;
+    color: var(--text-on-primary) !important;
+}
+
+/* Sidebar & List Group Active States */
+#sdv-connect-app .list-group-item.active,
+.photogallery-container .list-group-item.active {
+    background-color: var(--sidebar-active-bg) !important;
+    color: var(--sidebar-active-text-color) !important;
+    border-left: 4px solid var(--sidebar-active-indicator-color) !important;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 0;
+}
+
+#sdv-connect-app .badge.bg-SiteColor,
+.photogallery-container .badge.bg-SiteColor {
+    background-color: var(--primary-color) !important;
+    color: var(--text-on-primary) !important;
+}
+
+/* Icon Colors */
+.bi,
+.lucide {
+    color: inherit;
+}
+
+.icon-theme {
+    color: var(--icon-color) !important;
+}
+
+/* Image Management two-column shell (matches previous Bootstrap layout) */
+.im-layout {
+    display: grid;
+    grid-template-columns: minmax(220px, 25%) minmax(0, 1fr);
+    gap: 16px;
+    height: 100%;
+}
+
+.im-layout-sidebar,
+.im-layout-content {
+    min-width: 0;
+    height: 100%;
+}
+
+@media (max-width: 1024px) {
+    .im-layout {
+        grid-template-columns: 1fr;
+    }
+}
+@media (min-width: 769px) {
+  .im-layout {
+    grid-template-columns: minmax(220px, 24%) minmax(0, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .im-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Add Image popup: keep left controls + right preview like reference */
+.im-editor-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px;
+    height: 100%;
+}
+
+.im-editor-left {
+    width: 100%;
+    max-width: 100%;
+}
+
+.im-editor-right {
+    min-width: 0;
+}
+
+@media (max-width: 640px) {
+    .im-editor-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .im-editor-left {
+        max-width: 100%;
+    }
+}
+
+/* Accordion Customization */
+.accordion-button:not(.collapsed) {
+    background-color: var(--brand-light) !important;
+    color: var(--primary-color) !important;
+}
+
+.accordion-button:after {
+    filter: sepia(100%) hue-rotate(190deg) saturate(500%);
+    /* Adjust based on primary blue if needed, or use mask */
+}
+
+/* Custom Scrollbar */
+.scrollbar::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}

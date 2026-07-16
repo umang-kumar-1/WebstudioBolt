@@ -1,0 +1,345 @@
+/* Jodit Editor Custom Styling */
+.jodit-wrapper {
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Custom toolbar styling to match application theme */
+.jodit-toolbar-button {
+    border-radius: 2px !important;
+}
+
+.jodit-toolbar-button:hover {
+    background-color: var(--brand-light, #f0f0f0) !important;
+}
+
+.jodit-toolbar-button_active {
+    background-color: var(--primary-color, #0078d4) !important;
+    color: white !important;
+}
+
+/* Status bar styling */
+.jodit-status-bar {
+    background-color: #f9fafb !important;
+    border-top: 1px solid #e5e7eb !important;
+    padding: 4px 12px !important;
+    font-size: 10px !important;
+    text-transform: uppercase !important;
+    font-weight: bold !important;
+    color: #9ca3af !important;
+}
+
+/* Editor content area */
+.jodit-container .jodit-wysiwyg {
+    padding: 16px !important;
+}
+
+.jodit-wysiwyg {
+    font-size: 14px;
+    line-height: 1.6;
+    color: inherit;
+    padding: 0;
+}
+
+/* Placeholder styling */
+.jodit-placeholder {
+    color: #9ca3af !important;
+    /* font-style: italic !important; */
+}
+
+/* Focus state */
+.jodit-container:focus-within {
+    outline: 1px solid var(--primary-color, #0078d4) !important;
+    outline-offset: -1px !important;
+}
+
+/* Toolbar */
+.jodit-toolbar {
+    background-color: #f9fafb !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    padding: 8px !important;
+}
+
+/* Remove box shadow from container */
+.jodit-container {
+    box-shadow: none !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 4px !important;
+}
+
+/* Popups/dialogs (link insert, image, etc.) must sit above editor modals (z-index 1450+) */
+.jodit-dialog__overlay,
+.jodit-dialog,
+.jodit-popup-container,
+.jodit-ui-popup,
+.jodit-popup,
+.jodit-tooltip-container {
+    z-index: 150000 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .jodit-toolbar {
+        flex-wrap: wrap !important;
+    }
+}
+
+/* Table styling inside editor */
+.jodit-wysiwyg table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    margin: 16px 0 !important;
+}
+
+.jodit-wysiwyg table td,
+.jodit-wysiwyg table th {
+    border: 1px solid #d1d5db !important;
+    padding: 8px !important;
+}
+
+.jodit-wysiwyg table th {
+    background-color: #f3f4f6 !important;
+    font-weight: 600 !important;
+}
+
+/* Image styling inside editor */
+.jodit-wysiwyg img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 4px !important;
+    margin: 8px 0 !important;
+}
+
+/* Link styling inside editor — match global site link styles (no underline by default) */
+.jodit-wysiwyg a {
+    color: var(--link-color, var(--primary-color, #0078d4)) !important;
+    text-decoration: none !important;
+}
+
+.jodit-wysiwyg a[href]:hover {
+    color: var(--link-hover-color, var(--primary-color, #0078d4)) !important;
+    text-decoration: underline !important;
+    opacity: 0.8 !important;
+}
+
+/* List styling */
+.jodit-wysiwyg ul {
+    list-style-type: disc;
+    padding-left: 30px !important;
+    margin: 8px 0 !important;
+}
+
+.jodit-wysiwyg ol {
+    list-style-type: decimal;
+    padding-left: 30px !important;
+    margin: 8px 0 !important;
+}
+
+.jodit-wysiwyg li {
+    display: list-item !important;
+    margin: 4px 0 !important;
+}
+
+/* Headings */
+.jodit-wysiwyg h1,
+.jodit h1 {
+    font-size: 40px !important;
+    line-height: 48px !important;
+    letter-spacing: 0px !important;
+    /* color: var(--primary-color, var(--color-primary)) !important; */
+    color: var(--color-text-body, inherit) !important;
+    /* No !important: allow Jodit "font" / inline font-family on headings */
+    font-family: var(--font-primary, var(--font-family-secondary, inherit));
+    font-weight: 700 !important;
+    margin: 16px 0 8px 0 !important;
+}
+
+.jodit-wysiwyg h2,
+.jodit h2 {
+    font-size: 24px !important;
+    line-height: 32px !important;
+    letter-spacing: 0px !important;
+    /* color: var(--primary-color, var(--color-primary)) !important; */
+    color: var(--color-text-body, inherit) !important;
+    font-family: var(--font-secondary, var(--font-family-secondary, inherit));
+    font-weight: 700 !important;
+    margin: 16px 0 8px 0 !important;
+}
+
+.jodit-wysiwyg h1.siteColor,
+.jodit-wysiwyg h2.siteColor,
+.jodit h1.siteColor,
+.jodit h2.siteColor {
+    color: var(--primary-color, var(--color-primary)) !important;
+}
+
+.jodit-wysiwyg h3,
+.jodit h3 {
+    font-size: 20px !important;
+    line-height: 28px !important;
+    letter-spacing: 0px !important;
+    color: var(--color-text-body, inherit) !important;
+    font-family: var(--font-secondary, var(--font-family-secondary, inherit));
+    font-weight: 700 !important;
+    margin: 16px 0 8px 0 !important;
+}
+
+.jodit-wysiwyg h4,
+.jodit h4 {
+    font-size: 18px !important;
+    line-height: 24px !important;
+    letter-spacing: 0px !important;
+    color: var(--color-text-body, inherit) !important;
+    font-family: var(--font-secondary, var(--font-family-secondary, inherit));
+    font-weight: 700 !important;
+    margin: 16px 0 8px 0 !important;
+}
+
+.jodit-wysiwyg h5,
+.jodit-wysiwyg h6 {
+    margin: 16px 0 8px 0 !important;
+    font-weight: 600 !important;
+}
+
+/* Blockquote */
+.jodit-wysiwyg blockquote {
+    border-left: 4px solid var(--primary-color, #0078d4) !important;
+    padding-left: 16px !important;
+    margin: 16px 0 !important;
+    font-style: italic !important;
+    color: #6b7280 !important;
+}
+
+/* Code block */
+.jodit-wysiwyg pre,
+.jodit-wysiwyg code {
+    background-color: #f3f4f6 !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 4px !important;
+    padding: 2px 6px !important;
+    font-family: 'Courier New', Courier, monospace !important;
+    font-size: 13px !important;
+}
+
+.jodit-wysiwyg pre {
+    padding: 12px !important;
+    overflow-x: auto !important;
+}
+
+/* Horizontal rule */
+.jodit-wysiwyg hr {
+    border: none !important;
+    border-top: 2px solid #e5e7eb !important;
+    margin: 24px 0 !important;
+}
+
+/* Custom accordion icon styling for Jodit inserted details */
+.jodit-wysiwyg details.custom-jodit-accordion>summary {
+    list-style: none !important;
+}
+
+.jodit-wysiwyg details.custom-jodit-accordion>summary::-webkit-details-marker {
+    display: none;
+}
+
+.jodit-wysiwyg .custom-jodit-accordion-icon {
+    width: 7px;
+    height: 7px;
+    border-right: 1.5px solid #5d8d78;
+    border-bottom: 1.5px solid #5d8d78;
+    display: inline-block;
+    transform: rotate(-45deg);
+    transition: transform 0.2s ease;
+    margin-right: 2px;
+}
+
+.jodit-wysiwyg details.custom-jodit-accordion[open] .custom-jodit-accordion-icon {
+    transform: rotate(45deg);
+}
+
+
+/******************** Accordion Css **********************/
+
+details {
+    overflow: hidden;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+details summary {
+    z-index: 10;
+    font-weight: 600;
+    font-family: var(--font-secondary);
+    display: inline-block;
+    width: 100%;
+    font-size: 15px;
+    border: 1px solid var(--color-border);
+    outline: none;
+    padding: 3px;
+    background: var(--color-white);
+    color: #333;
+    padding-left: 2.2rem;
+    position: relative;
+    cursor: pointer;
+}
+
+summary.siteColor::before {
+    border-right: 1.5px solid var(--color-primary);
+    border-top: 1.5px solid var(--color-primary);
+}
+
+details[open]>summary:before {
+    transform: translateY(-100%) rotate(135deg) !important;
+    transition: 0.45s transform ease !important;
+}
+
+summary::before {
+    border-right: 1.5px solid var(--color-primary);
+    border-top: 1.5px solid var(--color-primary);
+}
+
+summary::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 10px;
+    height: 10px;
+    transition: transform .3s;
+    transform: translateY(-80%) rotate(45deg);
+    top: 17px;
+    left: 10px;
+}
+
+.expand-AccordionContent,
+.AccordionContent {
+    border: 1px solid var(--color-border);
+    border-top: none;
+    background: var(--primary-color);
+}
+
+details summary::before {
+    top: 50% !important;
+    border-right: 2px solid #1f2937 !important;
+    border-top: 2px solid #1f2937 !important;
+    right: 20px;
+    left: auto;
+    transform: translateY(-70%) rotate(135deg);
+}
+
+/* Site-color accordion headers: white expand/collapse chevron on green background */
+details:has(.expand-AccordionContent) > summary::before,
+details:has(.AccordionContent) > summary::before,
+details > summary.siteColor::before,
+.jodit-wysiwyg details:has(.expand-AccordionContent) > summary::before,
+.jodit-wysiwyg details:has(.AccordionContent) > summary::before,
+.jodit-wysiwyg details summary:has(.siteColor)::before,
+.jodit-wysiwyg details summary:has(h1.siteColor)::before,
+.jodit-wysiwyg details summary:has(h2.siteColor)::before {
+    border-right-color: #ffffff !important;
+    border-top-color: #ffffff !important;
+}
+
+details[open]>summary:before {
+    transform: translateY(-55%) rotate(-45deg) !important;
+}
